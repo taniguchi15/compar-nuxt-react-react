@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { setPublicUrl } from '../../../common/func'
 import { login } from '../../../stores/auth'
 
 import Title from '../../atoms/view/Title'
@@ -38,7 +37,7 @@ function App() {
     const valid = Object.values(valids).every(b => b)
     if (!valid) return
     dispatch(login({userId: inputs.userId}))
-    history.push(setPublicUrl('/sono-4'))
+    history.push('/sono-4')
   }
 
   return (

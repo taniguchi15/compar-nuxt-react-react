@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { State } from '../../../stores'
 import { logout } from '../../../stores/auth'
-import { setPublicUrl } from '../../../common/func'
 
 import Title from '../../atoms/view/Title'
 
@@ -39,11 +38,11 @@ function App() {
             <p>こんにちは、Guestさん。(未ログイン)</p>
         }
         <div className="links">
-          <Link className="login" to={setPublicUrl("/sono-4/login")}>
+          <Link className="login" to="/sono-4/login">
             <p>ログイン</p>
             <p className="detail">（ログイン時はトップ画面遷移）</p>
           </Link>
-          <Link className="profile" to={setPublicUrl("/sono-4/profile")}>
+          <Link className="profile" to="/sono-4/profile">
             <p>プロフィール</p>
             <p className="detail">（未ログイン時はログイン画面遷移）</p>
           </Link>

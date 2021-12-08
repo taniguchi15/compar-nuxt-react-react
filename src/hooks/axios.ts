@@ -1,7 +1,6 @@
 import { useHistory } from 'react-router-dom'
 import axios, { AxiosInstance } from 'axios'
 
-import { setPublicUrl } from '../common/func'
 
 const baseAxios = (() => {
 
@@ -38,7 +37,7 @@ export default function useAxios(): AxiosInstance {
 
   axiosResponseHandlerId = baseAxios.interceptors.response.use(value => value,
   error => {
-    history.replace(setPublicUrl('/error'), {
+    history.replace('/error', {
       httpStatusCode: error.response.status
     })
   })

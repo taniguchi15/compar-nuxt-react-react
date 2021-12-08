@@ -1,4 +1,4 @@
-import React, {FC, useMemo } from 'react'
+import React, { FC, useMemo } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect, RouteProps } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
@@ -13,7 +13,8 @@ import Profile from './component/pages/sono-4/profile'
 import Error from './component/pages/error'
 
 import { State } from './stores'
-import { setPublicUrl } from './common/func'
+
+const PUBLIC_URL = process.env.PUBLIC_URL
 
 function omitComponent(props: any): any {
   return Object.keys(props).reduce((acc: any, cur: string) => {
@@ -39,7 +40,7 @@ function omitComponent(props: any): any {
       render={() => login ?
         <Route {...props} />
       :
-        <Redirect to={setPublicUrl("/sono-4/login")} />}
+        <Redirect to="/sono-4/login" />}
     />
   )
 }
@@ -57,7 +58,7 @@ const Unauthed: FC<RouteProps> = props => {
     <Route
       {...rest}
       render={() => login ?
-        <Redirect to={setPublicUrl("/sono-4")} />
+        <Redirect to="/sono-4" />
       :
         <Route {...props} />
       }
@@ -67,18 +68,18 @@ const Unauthed: FC<RouteProps> = props => {
   
 function App() {
   return (
-    <Router>
+    <Router basename={PUBLIC_URL}>
       <Switch>
-        <Route exact path={setPublicUrl("/")} component={Top} />
-        <Route exact path={setPublicUrl("/sono-1")} component={Sono1} />
-        <Route exact path={setPublicUrl("/sono-2")} component={Sono2_1} />
-        <Route exact path={setPublicUrl("/sono-2")} component={Sono2_2} />
-        <Route exact path={setPublicUrl("/sono-3")} component={Sono3} />
-        <Route exact path={setPublicUrl("/sono-4")} component={Sono4} />
-        <Unauthed exact path={setPublicUrl("/sono-4/login")} component={Login} />
-        <Authed exact path={setPublicUrl("/sono-4/profile")} component={Profile} />
-        <Route exact path={setPublicUrl("/error")} component={Error} />
-        <Redirect to={{ pathname: setPublicUrl("/error"), state: { httpStatusCode: 404 } }} />
+        <Route exact path="/" component={Top} />
+        <Route exact path="/sono-1" component={Sono1} />
+        <Route exact path="/sono-2" component={Sono2_1} />
+        <Route exact path="/sono-2" component={Sono2_2} />
+        <Route exact path="/sono-3" component={Sono3} />
+        <Route exact path="/sono-4" component={Sono4} />
+        <Unauthed exact path="/sono-4/login" component={Login} />
+        <Authed exact path="/sono-4/profile" component={Profile} />
+        <Route exact path="/error" component={Error} />
+        <Redirect to={{ pathname: "/error", state: { httpStatusCode: 404 } }} />
       </Switch>
     </Router>
   )

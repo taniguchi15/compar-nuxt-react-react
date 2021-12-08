@@ -3,8 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 
 import Title from '../atoms/view/Title'
 
-import { setPublicUrl } from '../../common/func'
-
 import './error.sass'
 
 type State = {
@@ -44,7 +42,7 @@ const Component: FC = () => {
       <p className="error">Error</p>
       <p className="code">{httpStatusCode}</p>
       <p>{getMessage(httpStatusCode)}</p>
-      { viewBackToTopLink(httpStatusCode) && <Link to={setPublicUrl('/')}>トップへ戻る</Link> }
+      { viewBackToTopLink(httpStatusCode) && <Link to="/">トップへ戻る</Link> }
     </div>
   )
 }
